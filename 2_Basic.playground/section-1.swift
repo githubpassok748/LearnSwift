@@ -1,215 +1,457 @@
-// Playground - noun: a place where people can play
+//// Playground - noun: a place where people can play
+//
+////Int、Double、Float、Bool、String，集合类型：Array和Dictionary
+///*Swift增加：
+//*1、元组（Tuple）：创建和传递一组数据
+//*2、可选类型（Optional：处理值缺失情况
+//*/
+//
+////常量和变量
+//let maxinumNumberOfLoginAttepts = 10
+//var currentLoginAttempt = 0
+//
+////在一行中声明多个常量或变量
+//var x = 0.0, y = 0.0, z = 0.0
+//
+////类型标注
+//var welcomeMessage: String
+//welcomeMessage = "Hello"
+//
+////常量和变量命名
+//let π = 3.14159
+//let 你好 = "你好世界"
+//let ？？？ = "dogcow"
+//
+////常量与变量名不能包含数字符号、箭头、保留的Unicode码位，连线与制表符。也不能以数字开头，但是可以在常量与变量名的其他地方包含数字。
+////常量与变量名需要与Swift保留关键字相同，使用反引号（`）讲关键字包围的方式将其做为名字使用。
+//
+////更改现有变量值为其他同类型值
+//var friendlyWelcome = "Hello!"
+//friendlyWelcome = "Bonjour!"
+//
+//print(friendlyWelcome)
+//println("This is a string")
+//
+//println("The current value of friendlyWelcome is \(friendlyWelcome)")
+//
+////这是一个注释
+///* 这是一个多行注释
+//*/
+//
+///* 这是第一个多行注释开头
+///* 这是第二个被嵌套多行注释*/
+//这是第一个多行注释的结尾*/
+//
+////分号：可选添加，同行多语句必须添加
+//let cat = "???"; println(cat)
+//
+////整数: 8, 16, 32, 64位有符号和无符号类型。无符号8位--UInt8, 32位有符号Int32
+////整数范围
+//let minValue = UInt8.min
+//let maxValue = UInt8.max
+//
+////Int：长度与平台原生字长相同。32位平台 Int = Int32, 64位平台 Int = Int64
+////UInt:特殊无符号类型，长度与当前平台原生字长相同。建议使用Int，提高代码可复用性。
+//
+////浮点数：Double（64位）至少15位数字，Float（32）至少6位
+//
+////Swift类型安全语言
+////类型推测：根据变量类型赋值推测，故大部分情况无需声明类型，常量和变量除外
+//
+////当推测浮点数类型时，Swift总是会选择Double而不是Float
+////如果表达式同事出现整数和浮点，会被推测为Double类型
+//
+///*数值型字面量（具体值）
+//*1.十进制：没有前缀
+//*2.二进制：0b
+//*3.八进制：0o
+//*4.十六进制：0x
+//*/
+//
+///*浮点字面量可选（exponent）:指数
+//*1.十进制浮点：大/小写e
+//*2.十六进制浮点：大/小写p
+//*/
+//
+////十进制
+//1.25e2
+//1.25e-2
+//
+////十六进制
+//0xFp2 //$15 * 2^{2}
+//0xFp-2
+//
+//let decimalDouble = 12.1875
+//let exponentDoulbe = 1.21875e1
+//
+///*** 十六进制带小数位不要理解，换算公式：
+//*  0xC.3p0 = (12 * 16^0 + (10/16) * 0.3) * 2^0
+//*/
+//let hexadecimalDouble = 0xC.3p0
+//
+////数值类型转换
+///*
+//1. Int8范围 -128~127
+//2. UInt8 范围 0~255
+//*/
+//let cannotBeNegative: UInt8 = 1
+//let tooBig: Int8 = Int8.max
+//
+////数据类型转换：需要用当前值初始化一个期望类型的新数字
+//let twoThousand: UInt16 = 2_000
+//let one: UInt8 = 1
+//let twoThousandAndOne = twoThousand + UInt16(one)
+//
+////整数与浮点数转换
+//let three = 3
+//let pointOneFourOneFiveNine = 0.14159
+//let pi = Double(three) + pointOneFourOneFiveNine
+//
+////浮点转整型
+//let integerPi = Int(pi)
+//
+////类型别名 typealias
+//typealias AudioSample = UInt16
+//var maxAmplitudeFound = AudioSample.min
+//
+////布尔值
+//let orangeAreOrange = true
+//let turnipsAreDelicious = false
+//
+//if turnipsAreDelicious {
+//    println("Mmm, tasty turnips!")
+//} else {
+//    println("Eww,trunips are horrible.")
+//}
+//
+//let i = 1
+//if i == 1 {
+//    //编译成功
+//}
+//
+////元组（tuples）：把多个值组合成一个符合值，可以任意类型组合！
+//let http404Error = (404, "Not Found")
+//
+////分解元组内容
+//let (statusCode, statusMessage) = http404Error
+//println("The status code is \(statusCode)")
+//println("The status message is \(statusMessage)")
+//
+////取部分元组值，使用下划线'_'占位其他元素
+//let (justTheStatusCode, _) = http404Error
+//println("The status code is \(justTheStatusCode)")
+//
+////通过使用下标访问元组中的单个元素，下标从零开始
+//println("The status code is \(http404Error.0)")
+//println("The status message is \(http404Error.1)")
+//
+////定义元组，给单个元素命名：
+//let http200Status = (statusCode: 200, description: "OK")
+////通过名字获取元素值
+//println("The status code is \(http200Status.statusCode)")
+//println("The status message is \(http200Status.description)")
+//
+////元组适用与临时组织值，不适合复杂数据结构，建议适用类和结构体。
+//
+////可选 optionals，用来处理值缺失情况
+//let possibleNumber = "123"
+//let convertedNumber = possibleNumber.toInt()
+//
+////if语句以及强制解析
+////当你确定可选包趋势含值之后，你可以在可选的名字后面加一个感叹号（！）来获取值。这个惊叹号表示“我知道这个可选有值，请使用它。”这被称为可选值的强制解析：
+//if (convertedNumber != nil) {
+//    println("\(possibleNumber) has an integer value of \(convertedNumber!)")
+//} else {
+//    println("\(possibleNumber) could not be converted to an integer")
+//}
+//
+////可选绑定
+////使用可选绑定来判断可选是否包含值，如果包含就把值赋给一个临时常量和变量。可选绑定可以用在if和while语句中来对可选的值进行判断并把值赋给一个常量或者变量。
+//if let actualNumber = possibleNumber.toInt() {
+//    println("\(possibleNumber) has an integer value of \(actualNumber)")
+//} else {
+//    println("\(possibleNumber) could not be converted to an integer")
+//}
+//
+////nil :不能用于非可选常量和变量
+//var serverResponseCode: Int? = 404
+//serverResponseCode = nil
+//
+//var surveryAnswer: String?
+//
+////隐式解析可选:把想要用作可选的类型的后面的问号（String？）改成感叹号（String！）来声明隐式解析可选
+////主要被用在Swift中类的构造过程中
+//
+////可选与隐式解析可选之间的区别
+//let possibleString: String? = "An optional string."
+//println(possibleString!)
+//
+//let assumedString: String! = "An implicitly unwrapped optional string."
+//println(assumedString)
+//
+////判断隐式解析可选是否含值
+//if assumedString != nil {
+//    println(assumedString)
+//}
+//
+////在可选绑定中使用隐式解析可选来检查并解析它的值
+//if let definiteString = assumedString {
+//    println(definiteString)
+//}
+//
+////断言（assert）：结束代码运行并通过调试来找到值缺失的原因
+//
+////断言调试： 如果条件为true，继续运行，否则代码终止
+//let age = 3
+//assert(age >= 0, "A person's age cannot be less than zero")
+//
+////断言信息可以忽略
+//assert(age >= 0)
+//
+////2.2 基本运算符
+////浮点数取余运算：%
+////表达两数之间的值区间运算符（a..b和a...b)
+//
+////运算符：一目、双目、三目运算符
+//
+////赋值运算符
+//let b = 10
+//var a = 5
+//a = b
+//
+////如果赋值的右边是一个多元组，它的元素可以马上被分解多个常量或变量
+//let (xy) = (1, 2)
+//
+////赋值操作不返回任何值
+//
+//if x == y {
+//    println(xy)
+//}
+//
+////数值运算默认不允许出现溢出情况，但可使用溢出运算符表达溢出情况(a&+b)
+//"hello, " + "world"
+//
+////求余运算
+////在对负数-b求余时，-b的符号会被忽略，这意味着a%b和a%-b结果相同
+//9%4
+//-9%4
+//
+////浮点求余运算
+//8%(-2.5)
 
-//Int、Double、Float、Bool、String，集合类型：Array和Dictionary
-/*Swift增加：
-*1、元组（Tuple）：创建和传递一组数据
-*2、可选类型（Optional：处理值缺失情况
-*/
+//***因自增需用到变量符号在上文被常量使用过（常量值无法改变），会导致出错，故注释掉之前
 
-//常量和变量
-let maxinumNumberOfLoginAttepts = 10
-var currentLoginAttempt = 0
+//自增和自减运算
+//var i = 0
+//++i
+//
+////运算符修改j后有一个返回值，前置与后置返回值不同
+///*
+//1. 当 ++ 前置的时候，先自增再返回
+//2. 当 ++ 后置的时候，先返回再自增
+//*/
+//var a = 0
+//let b = ++a
+//let c = a++
 
-//在一行中声明多个常量或变量
-var x = 0.0, y = 0.0, z = 0.0
 
-//类型标注
-var welcomeMessage: String
-welcomeMessage = "Hello"
+//单目负号： 单目负号写在操作数之前，中间没有空格，切换数值正负
+//单目正号： 数值保持不变
 
-//常量和变量命名
-let π = 3.14159
-let 你好 = "你好世界"
-let ？？？ = "dogcow"
+//符合赋值
+var a = 1
+a += 2
 
-//常量与变量名不能包含数字符号、箭头、保留的Unicode码位，连线与制表符。也不能以数字开头，但是可以在常量与变量名的其他地方包含数字。
-//常量与变量名需要与Swift保留关键字相同，使用反引号（`）讲关键字包围的方式将其做为名字使用。
-
-//更改现有变量值为其他同类型值
-var friendlyWelcome = "Hello!"
-friendlyWelcome = "Bonjour!"
-
-print(friendlyWelcome)
-println("This is a string")
-
-println("The current value of friendlyWelcome is \(friendlyWelcome)")
-
-//这是一个注释
-/* 这是一个多行注释
-*/
-
-/* 这是第一个多行注释开头
-/* 这是第二个被嵌套多行注释*/
-这是第一个多行注释的结尾*/
-
-//分号：可选添加，同行多语句必须添加
-let cat = "???"; println(cat)
-
-//整数: 8, 16, 32, 64位有符号和无符号类型。无符号8位--UInt8, 32位有符号Int32
-//整数范围
-let minValue = UInt8.min
-let maxValue = UInt8.max
-
-//Int：长度与平台原生字长相同。32位平台 Int = Int32, 64位平台 Int = Int64
-//UInt:特殊无符号类型，长度与当前平台原生字长相同。建议使用Int，提高代码可复用性。
-
-//浮点数：Double（64位）至少15位数字，Float（32）至少6位
-
-//Swift类型安全语言
-//类型推测：根据变量类型赋值推测，故大部分情况无需声明类型，常量和变量除外
-
-//当推测浮点数类型时，Swift总是会选择Double而不是Float
-//如果表达式同事出现整数和浮点，会被推测为Double类型
-
-/*数值型字面量（具体值）
-*1.十进制：没有前缀
-*2.二进制：0b
-*3.八进制：0o
-*4.十六进制：0x
-*/
-
-/*浮点字面量可选（exponent）:指数
-*1.十进制浮点：大/小写e
-*2.十六进制浮点：大/小写p
-*/
-
-//十进制
-1.25e2
-1.25e-2
-
-//十六进制
-0xFp2 //$15 * 2^{2}
-0xFp-2
-
-let decimalDouble = 12.1875
-let exponentDoulbe = 1.21875e1
-
-/*** 十六进制带小数位不要理解，换算公式：
-*  0xC.3p0 = (12 * 16^0 + (10/16) * 0.3) * 2^0
-*/
-let hexadecimalDouble = 0xC.3p0
-
-//数值类型转换
+//比较运算符
 /*
-1. Int8范围 -128~127
-2. UInt8 范围 0~255
+1. 等于 a == b
+2. 不等于 a != b
+3. 大于 a>b
+4. 小于 a<b
+5. 大于等于 a>=b
+6. 小于等于 a<=b
 */
-let cannotBeNegative: UInt8 = 1
-let tooBig: Int8 = Int8.max
 
-//数据类型转换：需要用当前值初始化一个期望类型的新数字
-let twoThousand: UInt16 = 2_000
-let one: UInt8 = 1
-let twoThousandAndOne = twoThousand + UInt16(one)
+////每个比较运算都返回了一个标识是否成立的布尔值
+//1 == 1
+//2 != 1
+//2 > 1
+//1 < 2
+//1 >= 1
+//2 <= 1
+//
+//let name = "world"
+//if name == "world" {
+//    println("hello world")
+//} else {
+//    println("对不起， \(name), 我不认识你！")
+//}
+//
+////三目条件运算
+//let comtentHeight = 40
+//let hasHeader = true
+//let rowHeight = comtentHeight + (hasHeader ? 50 : 20)
+////应避免在一个组合语句使用多个三目条件运算符
+//
+////区间运算符
+////1. 闭区间运算符（a...b)：定义一个包含a到b（包括a和b）的所有值的区间
+//for index in 1...5 {
+//    println("\(index) times 5 is \(index * 5)")
+//}
+//
+////半闭区间
+////1.半闭区间运算符(a..<b): 定义一个从a到b的区间。只包含第一个值
+//let names = ["Anna", "Alex", "Brian", "Jack"]
+//let count = names.count
+//for i in 0..<count {
+//    println("第 \(i+1) 个人叫 \(names[i])")
+//}
+//
+////逻辑运算
+///*
+//1. 逻辑非 !a
+//2. 逻辑与 a && b
+//3. 逻辑或 a || b
+//*/
+//
+//let allowEntry = false
+//if !allowEntry {
+//    println("ACCESS DENIED")
+//}
+//// if !allowedEntry 语句可以读作“如果 非 allowed entry.”接下一行代码只有在如果“非 allowed entry” 为true，即 allowedEntry 为false时被执行。
+//
+////逻辑与（a && b)：只要任意一个值为false，整个表达式的值就为false。如果第一个值为false，那么就不会去计算第二个值，这称为“短路设计”
+//let enteredDoorCode = true
+//let passedRetinaScan = false
+//if enteredDoorCode && passedRetinaScan {
+//    println("Welcome!")
+//} else {
+//    println("ACCESS DENIED")
+//}
+//
+////逻辑或
+//let hasDoorKey = false
+//let knowsOverridePassword = true
+//if hasDoorKey || knowsOverridePassword {
+//    println("Welcome!")
+//} else {
+//    println("ACCESS DENIED")
+//}
+//
+////组合逻辑
+//if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
+//    println("Welcome!")
+//} else {
+//    println("ACCESS DENIED")
+//}
+//
+////使用括号明确优先级
+//if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
+//    println("Welcome!")
+//} else {
+//    println("ACCESS DENIED")
+//}
 
-//整数与浮点数转换
-let three = 3
-let pointOneFourOneFiveNine = 0.14159
-let pi = Double(three) + pointOneFourOneFiveNine
+//2.3 字符串和字符
+let something = "Some string literal value"
 
-//浮点转整型
-let integerPi = Int(pi)
+/*字符串字面量可以包含以下特殊字符
+1.转义特殊字符 \0(空字符）、\\(反斜线）、\t(水平制表符）、\n(换行符）、\r(回车符）、\"(双引号）、\'（单引号）。
+2.单字节Unicode标量，写成 \xnn,其中 nn为两位十六进制数。
+3.双字节Unicode标量，写成 \unnnn，其中nnnn为四位十六进制数。
+4.四字节Unicode标量，写成 \Unnnnnnnn,其中nnnnnnnn为八位十六进制数。
+*/
+let wiseWords = "\"Imagination is more important than knowledge\" - Einstein"
+//***let dollarSign = "\x24"
 
-//类型别名 typealias
-typealias AudioSample = UInt16
-var maxAmplitudeFound = AudioSample.min
-
-//布尔值
-let orangeAreOrange = true
-let turnipsAreDelicious = false
-
-if turnipsAreDelicious {
-    println("Mmm, tasty turnips!")
-} else {
-    println("Eww,trunips are horrible.")
+//初始化空字符串
+var emptyString = ""
+var anotherEmptyString = String()
+if emptyString.isEmpty {
+    println("Nothing to see here")
 }
 
-let i = 1
-if i == 1 {
-    //编译成功
+//字符串可变性
+var variableString = "Horse"
+variableString += " and carriage"
+let constantString = "Highlander"
+
+//Swift的String类型是值类型。如果创建了一个新的字符串值，那么当其进行常量、变量赋值操作或在行数/方法中传递时，会进行值拷贝。在不同情况下，都会对已有字符串值创建新副本，并对该新副本进行传递或赋值。
+//Swift默认字符串拷贝的方式保证了在函数/方法中传递的是字符串的值，其明确您独有该字符串的值，无论它来自哪里。您可以放心您传递的字符串本身不会被更改，除非你自己更改它。
+
+//在实际编译时，Swift编译器会优化字符串的使用，使实际复制只发生在绝对必要的情况下，这意味着您始终可以在将字符串作为值类型的同时获得极高的性能。
+
+//使用字符
+for character in "Dog!????" {
+    println(character)
 }
 
-//元组（tuples）：把多个值组合成一个符合值，可以任意类型组合！
-let http404Error = (404, "Not Found")
+//通过标明一个Character类型注解并通过字符字面量进行赋值，可以建立一个独立的字符常量或变量
+let yenSign: Character = "￥"
 
-//分解元组内容
-let (statusCode, statusMessage) = http404Error
-println("The status code is \(statusCode)")
-println("The status message is \(statusMessage)")
+//计算字符数量
+let unusualMenagerie = "Koala ????, Snail ????, Penguin ????, Dromedary ????"
+println("unusualMenagerie has \(countElements(unusualMenagerie)) characters")
 
-//取部分元组值，使用下划线'_'占位其他元素
-let (justTheStatusCode, _) = http404Error
-println("The status code is \(justTheStatusCode)")
+//连接字符串和字符
+let string1 = "hello"
+let string2 = " there"
+var welcome = string1 + string2
 
-//通过使用下标访问元组中的单个元素，下标从零开始
-println("The status code is \(http404Error.0)")
-println("The status message is \(http404Error.1)")
+var instruction = "look over"
+instruction += string2
 
-//定义元组，给单个元素命名：
-let http200Status = (statusCode: 200, description: "OK")
-//通过名字获取元素值
-println("The status code is \(http200Status.statusCode)")
-println("The status message is \(http200Status.description)")
+let exclamationMark: Character = "!"
+welcome.append(exclamationMark)
 
-//元组适用与临时组织值，不适合复杂数据结构，建议适用类和结构体。
+//字符串插值
+let multiplier = 3
+let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 
-//可选 optionals，用来处理值缺失情况
-let possibleNumber = "123"
-let convertedNumber = possibleNumber.toInt()
+//比较字符串
+//Swift提供了三种方式来比较字符串的值：字符串相等，前缀相等和后缀相等。
 
-//if语句以及强制解析
-//当你确定可选包趋势含值之后，你可以在可选的名字后面加一个感叹号（！）来获取值。这个惊叹号表示“我知道这个可选有值，请使用它。”这被称为可选值的强制解析：
-if (convertedNumber != nil) {
-    println("\(possibleNumber) has an integer value of \(convertedNumber!)")
-} else {
-    println("\(possibleNumber) could not be converted to an integer")
+//字符串相等
+let quotation = "We're a lot alike, you and I."
+let sameQuotation = "We're a lot alike, you and I."
+if quotation == sameQuotation {
+    println("There two strings are considered equal")
 }
 
-//可选绑定
-//使用可选绑定来判断可选是否包含值，如果包含就把值赋给一个临时常量和变量。可选绑定可以用在if和while语句中来对可选的值进行判断并把值赋给一个常量或者变量。
-if let actualNumber = possibleNumber.toInt() {
-    println("\(possibleNumber) has an integer value of \(actualNumber)")
-} else {
-    println("\(possibleNumber) could not be converted to an integer")
+//前缀/后缀相等: 通过调用hasPerfix/hasSuffix方法检查字符串是否拥有特定前缀/后缀。两个方法均需要以字符串作为参数传入并返回Boolean值。两个方法均执行基本字符串和前缀/后缀字符串之间诸葛字符的比较操作。
+let romeoAndJuliet = [
+    "Act 1 Scene 1: Verona, A public place",
+    "Act 1 Scene 2: Capulet's mansion",
+    "Act 1 Scene 3: A room in Capulet's mansion",
+    "Act 1 Scene 4: A street outside Capulet's mansion",
+    "Act 1 Scene 5: The Great Hall in Caspulet's mansion",
+    "Act 2 Scene 1: Outside Capulet's mansion",
+    "Act 2 Scene 2: Capulet's orchard",
+    "Act 2 Scene 3: Outside Friar Lawrence's cell",
+    "Act 2 Scene 4: A street in Verona",
+    "Act 2 Scene 5: Capuler's mansion",
+    "Act 2 Scene 6: Friar Lawrence's cell"
+    
+]
+
+//利用hasPrefix方法使用romeoAndJuliet数组来计算话剧中第一幕场景数：
+var act1SceneCount = 0
+for scene in romeoAndJuliet {
+    if scene.hasPrefix("Act 1") {
+        ++act1SceneCount
+    }
 }
+println("There are \(act1SceneCount) scenes in Act 1")
 
-//nil :不能用于非可选常量和变量
-var serverResponseCode: Int? = 404
-serverResponseCode = nil
-
-var surveryAnswer: String?
-
-//隐式解析可选:把想要用作可选的类型的后面的问号（String？）改成感叹号（String！）来声明隐式解析可选
-//主要被用在Swift中类的构造过程中
-
-//可选与隐式解析可选之间的区别
-let possibleString: String? = "An optional string."
-println(possibleString!)
-
-let assumedString: String! = "An implicitly unwrapped optional string."
-println(assumedString)
-
-//判断隐式解析可选是否含值
-if assumedString != nil {
-    println(assumedString)
+//同样，可使用hasSuffix方法来计算发生在Capulet公馆和Lawrence牢房内以及周围的场景数
+var mansionCount = 0
+var cellCount = 0
+for scene in romeoAndJuliet{
+    if scene.hasSuffix("Capulet's mansion") {
+        ++mansionCount
+    } else if scene.hasSuffix("Friar Lawrence's cell") {
+        ++cellCount
+    }
 }
-
-//在可选绑定中使用隐式解析可选来检查并解析它的值
-if let definiteString = assumedString {
-    println(definiteString)
-}
-
-//断言（assert）：结束代码运行并通过调试来找到值缺失的原因
-
-//断言调试： 如果条件为true，继续运行，否则代码终止
-let age = 3
-assert(age >= 0, "A person's age cannot be less than zero")
-
-//断言信息可以忽略
-assert(age >= 0)
-
-
-
-
-
+println("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 
