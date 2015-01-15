@@ -455,3 +455,265 @@ for scene in romeoAndJuliet{
 }
 println("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 
+//Unicode
+/*Swift提供了几种不同的方式来访问字符串的Unicode表示。
+可以使用for-in来对字符串进行遍历，从而以Unicode字符的方式访问每一个字符值。
+
+另外，能够以其他三种Unicode兼容的方式访问字符串的值：
+1.UFT-8代码单元集合（利用字符串的uft8属性进行访问)
+2.UTF-16代码单元集合（利用字符串的uft16属性进行访问）
+3.21位的Unicode标量值集合（利用字符串的unicodeScalars属性访问）
+*/
+let dogString = "Dog!????"
+
+//UTF-8 : UTF8View类型（8位无符号）值集合
+for codeUnit in dogString.utf8 {
+    print("\(codeUnit)")
+}
+print("\n")
+
+//UTF-16
+for codeUnit in dogString.utf16 {
+    print("\(codeUnit)")
+}
+print("\n")
+
+//Unicode标量（Unicode Scalars)
+/*
+您可以通过遍历字符串的unicodeScalars属性来访问它的Unicode标量表示。其为UnicodeScalar类型的属性。UnicodeScalarView是UnicodeScalar的集合。一个Unicode Scalar是任意的21位的Unicode代码点。
+*/
+
+//每一个UnicodeScalar拥有一个值属性，可以返回对应的21位数值，用UInt32值表示。
+for scalar in dogString.unicodeScalars {
+    print("\(scalar.value)")
+}
+print("\n")
+
+//每个UnicodeScalar值夜可以用来构建一个新的字符串值，比如在字符串插值中使用：
+for scalar in dogString.unicodeScalars {
+    println("\(scalar)")
+}
+
+//集合类型
+/*
+1.数组：用来按顺序存储相同类型数据。
+2.字典：无序存储相同类型值但需要由独有的标识符引用和寻址（键值对）
+Swift语言里的数组和字典中存储的数据值类型必须明确
+注意：Swift的数组结构在被声明称常量和变量或者被传入函数与方法中时会相对其他类型展现出不同的特性
+*/
+
+//数组
+//数组构造语句
+var shoppingList: [String] = ["Eggs", "Milk"]
+//另一种写法
+var shoppingLists = ["Eggs","Milk"]
+
+//访问和修改数组
+println("The shopping list contains \(shoppingList.count) items.")
+
+if shoppingList.isEmpty {
+    println("The shopping list is empty")
+} else {
+    println("The shopping list is not empty.")
+}
+
+shoppingList.append("Flour")
+
+shoppingList += ["baking Powder"]
+
+shoppingList += ["Chocolate Spread", "Cheese", "Butter"]
+
+var firstItem =  shoppingList[0]
+
+shoppingList[0] = "Six eggs"
+
+shoppingList[4...6] = ["Bananas", "Apples"]
+
+//调用数组的insert(alindex:)方法来在摸个具体索引值之前添加数据项：
+shoppingList.insert("Maple Syrup", atIndex: 0)
+
+//使用removeAtIndex移除某一项，并返回该移除项
+let mapleSyrup = shoppingList.removeAtIndex(0)
+
+firstItem = shoppingList[0]
+
+//使用removeLast方法移除最后一项
+let apples = shoppingList.removeLast()
+
+//数组遍历 for-in
+for item in shoppingList {
+    println(item)
+}
+
+//使用enumerate函数同时需要使用每个数据项值和索引值
+for (index, value) in enumerate(shoppingList) {
+    println("Item \(index + 1): \(value)")
+}
+
+
+//创建并且构造一个数组
+var someInts = [Int]()
+println("someInts is of type [Int] with \(someInts.count) items.")
+
+someInts.append(3)
+someInts = []
+
+var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+
+var anotherThreeDoubles = Array(count: 3, repeatedValue: 2.5)
+
+// 使用+ 组合两种已存在相同类型数组
+var sixDouble = threeDoubles + anotherThreeDoubles
+
+//字典
+/* 字典是一种存储相同类型多重数据的存储器.字典中的数据项没有具体顺序。
+Swift的字典使用时需要具体规定可以存储键和值的类型。
+*/
+
+//定义字典： Dicionary<KeyType, ValueType>,KeyType必须是可哈希的。
+var airports: Dictionary<String, String> = ["TYO": "Tokyo", "DUB": "Dublin"]
+
+//读取和修改字典
+println("The dictionary of airports contains \(airports.count) items.")
+airports["LHR"] = "London"
+airports["LHR"] = "London Heathrow"
+
+//updateValue(forKey),返回更新值之前的原值！
+if let oldValue = airports.updateValue("Dublin internation", forKey: "DUB") {
+    println("The old value for DUB was \(oldValue)")
+}
+
+if let airportName = airports["DUB"] {
+    println("The name of the airport is \(airportName)")
+} else {
+    println("That airport is not the airports dictionay.")
+}
+
+airports["APL"] = "Apple Internation"
+airports["APL"] = nil
+
+//removeValueForKey: 返回被移除的Value或者在没有值的时候返回nil
+if let removedValue = airports.removeValueForKey("DUB") {
+    println("The removed airport's name is \(removedValue)")
+} else {
+    println("The airports dictionary does not contain a value for DUB.")
+}
+
+//字典遍历
+for airportCode in airports.keys {
+    println("Airpot code: \(airportCode)")
+}
+
+let airportCodes = Array(airports.keys)
+let airportNames = Array(airports.values)
+
+//创建空字典
+var nameOfIntegers = Dictionary<Int, String>()
+nameOfIntegers[16] = "sixteen"
+nameOfIntegers = [:]
+
+//控制流
+//For-In
+for index in 1...5 {
+    println("\(index) times 5 is \(index * 5)")
+}
+
+//如果不需要字典范围内每一项的值，你可以使用下划线(_)替代变量名来忽略对值的访问
+let base = 3
+let power = 10
+var answer = 1
+for _ in 1...power {
+    answer *= base
+}
+
+let names = ["Anna", "Alex", "Brian", "Jack"]
+for name in names {
+    println("Hello, \(name)!")
+}
+
+//遍历字典
+let numberOfLegs = ["spider": 8, "ant": 6, "cat": 4]
+for (animalName, legCount) in numberOfLegs {
+    println("\(animalName)s have \(legCount) legs")
+}
+
+//for-in 遍历字符串字符
+for character in "hello" {
+    println(character)
+}
+
+var index: Int
+for index = 0; index < 3; ++index {
+    println("index is \(index)")
+}
+println("The loop statements were executed \(index) times")
+
+//While循环
+/*
+1. while: 每次在循环开始时计算条件是否符合
+2.do-while:每次在循环结束时计算条件是否符合。
+*/
+
+//蛇与梯子
+//let finalSquare = 25
+//var board = [Int](count: finalSquare + 1, repeatedValue: 0)
+//board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+//board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+//
+//var square = 0
+//var diceRoll = 0
+//while square < finalSquare {
+//    if ++diceRoll == 7 { diceRoll = 1}
+//    square += diceRoll
+//    if square < board.count {
+//        square += board[square]
+//    }
+//}
+//println("Game over!")
+
+//Do-While
+//let finalSquare = 25
+//var board = [Int](count: finalSquare + 1, repeatedValue: 0)
+//board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+//board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+//var square = 0
+//var diceRoll = 0
+//
+//do {
+//    square += board[square]
+//    if ++diceRoll == 7 {diceRoll = 1 }
+//    square += diceRoll
+//} while square < finalSquare
+//println("Game over!")
+
+//条件语句
+//if
+var temperatureInFahrenheit = 30
+if temperatureInFahrenheit <= 32 {
+    println("It's very cold. Consider wearing a scarf.")
+}
+
+temperatureInFahrenheit = 40
+if temperatureInFahrenheit <= 32 {
+    println("It's very cold. Consider wearing a scarf.")
+} else {
+    println("It's not that cold. Wear a t-shirt.")
+}
+
+temperatureInFahrenheit = 90
+if temperatureInFahrenheit <= 32 {
+    println("It's very cold. Consider wearing a scarf.")
+} else if temperatureInFahrenheit >= 86 {
+    println("It's really warm.Don't forget to wear sunscreen.")
+} else {
+    println("It's not that cold. Wear a t-shirt.")
+}
+
+temperatureInFahrenheit = 72
+if temperatureInFahrenheit <= 32 {
+    println("It's very cold. Consider wearing a scarf")
+} else if temperatureInFahrenheit >= 86 {
+    println("It's really warm. Don't forget to wear sunscreen")
+}
+
+
