@@ -716,4 +716,156 @@ if temperatureInFahrenheit <= 32 {
     println("It's really warm. Don't forget to wear sunscreen")
 }
 
+//Switch:switch语句会尝试把某个值与若干模式进行匹配。
+let someCharacter: Character = "e"
+switch someCharacter {
+case "a", "e", "i", "o", "u":
+    println("\(someCharacter) is a vowel")
+case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
+    println("\(someCharacter) is consonant")
+default:
+    println("\(someCharacter) is note a vowel or a consonant")
+}
 
+//范围匹配
+let count = 3_000_000_000_000
+let countedThings = "stars in the Milky Way"
+var natuarlCount: String
+switch count {
+case 0:
+    natuarlCount = "no"
+case 1...3:
+    natuarlCount = "a few"
+case 4...9:
+    natuarlCount = "several"
+case 10...99:
+    natuarlCount = "tens of"
+case 100...999:
+    natuarlCount = "hundreds of"
+case 1000...9999:
+    natuarlCount = "thousands of"
+default:
+    natuarlCount = "millions and millisions of"
+}
+println("There are \(natuarlCount) \(countedThings).")
+
+//元组
+//元组中的元素可以是值，也可以是范围。另外，使用下划线(_)来匹配所有可能的值
+let somePoint = (1, 1)
+switch somePoint {
+case (0, 0):
+    println("(0, 0) is at the origin")
+case (_, 0):
+    println("(\(somePoint.0), 0) is on the x-axis")
+case (0, _):
+    println("(0, \(somePoint.1)) is on the y-axis")
+case (-2...2, -2...2):
+    println("(\(somePoint.0), \(somePoint.1)) is inside the box")
+default:
+    println("(\(somePoint.0), \(somePoint.1)) is outside of the box")
+}
+
+//允许多个case匹配同一个值，第一个被匹配到后，其他case将被忽略
+
+//值绑定：case块的模式允许将匹配的值绑定到一个临时的常量或变量，这些常量或变量在该case块里就可以被引用了--这种行为被称为值绑定
+
+let anotherPoint = (2, 3)
+switch anotherPoint {
+case (let x, 0):
+    println("on the x-axis with an x value of \(x)")
+case (0, let y):
+    println("on the y-axis with a y value of \(y)")
+case let (x, y):
+    println("somewhere else at (\(x), \(y))")
+}
+
+//where
+//case块的模式可以使用where语句来判断额外的条件
+let yetAnotherPoint = (1, -1)
+switch yetAnotherPoint {
+case let (x, y) where x == y:
+    println("(\(x), \(y)) is on the line x == y")
+case let (x, y) where x == -y:
+    println("(\(x), \(y)) is on the line x == -y")
+case let (x, y):
+    println("(\(x), \(y)) is just some arbitrary point")
+}
+
+//控制转移语句
+/*
+1.continue
+2.break
+3.fallthrough
+4.return
+*/
+
+//Continue: 立即停止本次循环，重新开始下次循环（并不会离开循环体）
+let puzzleInput = "great minds think alike"
+var puzzleOutput = ""
+for character in puzzleInput {
+    switch character {
+    case "a", "e", "i", "o", "u", " ":
+        continue
+    default:
+        puzzleOutput.append(character)
+    }
+}
+println(puzzleOutput)
+
+//Break: 立即结束真个控制流的执行。当在一个switch代码块中使用break时，会立即中断swift代码卡执行，并且跳转到表示switch代码快结束的大括号({})后的第一行代码
+let numberSymbol: Character = "三"
+var possibleIntegerValue: Int?
+switch numberSymbol {
+case "1", "?", "一", "?":
+    possibleIntegerValue = 1
+case "2", "?", "二", "?":
+    possibleIntegerValue = 2
+case "3", "?", "三", "?":
+    possibleIntegerValue = 3
+case "4", "?","四", "?":
+    possibleIntegerValue = 4
+default:
+    break
+}
+if let integerValue = possibleIntegerValue {
+    println("The integer value of \(numberSymbol) is \(integerValue).")
+} else {
+    println("An integer value could not be found for \(numberSymbol)")
+}
+
+//Fallthrough : 执行完case自动落入下一个case（需要在每个需要的case分支添加fallthrough
+let integerToDescribe = 5
+var description = "The number \(integerToDescribe) is"
+switch integerToDescribe {
+case 2, 3, 5, 7, 9, 11, 13, 17, 19:
+    description += " a prime number, and also"
+    fallthrough
+default:
+    description += " an integer."
+}
+println(description)
+
+//Labeled Statements（嵌套循环）
+//使用break指明要终止哪个循环体
+//使用continue指明要影响哪个循环体
+
+//let finalSquare = 25
+//var board = [Int](count: finalSquare + 1, repeatedValue: 0)
+//board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+//board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+//var square = 0
+//var diceRoll = 0
+//
+//gameLoop: while square != finalSquare {
+//    if ++diceRoll == 7 { diceRoll = 1}
+//    switch square + diceRoll {
+//    case finalSquare:
+//        break gameLoop
+//    case let newSquare where newSquare > finalSquare:
+//        continue gameLoop
+//    default:
+//        square += diceRoll
+//        square += board[square]
+//    }
+//}
+//println("Game over!")
