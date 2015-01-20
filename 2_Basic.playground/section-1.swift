@@ -1004,4 +1004,31 @@ func alignRight(var string: String, count: Int, pad: Character) -> String {
 let originalString = "hello"
 let paddedString = alignRight(originalString, 10, "-")
 
+//In-Out 形参
+//变量形参只能在函数本身内改变。如果你像让函数改变形参值，并想要在函数调用结束后保持形参值的改变，可以定义in-out形参，只能传递一个变量作为in-out形参对应的实参。不能传递一个常量或字面量作为实参。当把变量作为实参传递给in out形参时，需要在直接在变量前添加 & 符号，以表明它可以被函数修改。
+//提示：in-out参数不能有默认值，可变参数的参数也不能被标记为inout。如果您标记参数为inout，它不能同时被标记为var或let
+func swapTwoInts(inout a: Int, inout b: Int) {
+    let temporayA = a
+    a = b
+    b = temporayA
+}
 
+var someInt = 3
+var anotherInt = 107
+swapTwoInts(&someInt, &anotherInt)
+println("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
+
+//函数类型
+func addTwoInts(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+func multiplayTwoInts(a: Int, b: Int) -> Int {
+    return a * b
+}
+
+func printHelloWorld() {
+    println("hello, world")
+}
+
+//使用函数类型
