@@ -100,33 +100,127 @@ import Foundation
 //stepCounter.totalSteps = 360
 //stepCounter.totalSteps = 896
 
-//静态属性
-struct AudioChannel {
-    static let thresholdLevel = 10
-    static var maxInputLevelForAllChannels = 0
-    var currentLevel: Int = 0 {
-        didSet {
-            if currentLevel > AudioChannel.thresholdLevel {
-                currentLevel = AudioChannel.thresholdLevel
-            }
-            if currentLevel > AudioChannel.maxInputLevelForAllChannels {
-                AudioChannel.maxInputLevelForAllChannels = currentLevel
-            }
-        }
-    }
-}
+////静态属性
+//struct AudioChannel {
+//    static let thresholdLevel = 10
+//    static var maxInputLevelForAllChannels = 0
+//    var currentLevel: Int = 0 {
+//        didSet {
+//            if currentLevel > AudioChannel.thresholdLevel {
+//                currentLevel = AudioChannel.thresholdLevel
+//            }
+//            if currentLevel > AudioChannel.maxInputLevelForAllChannels {
+//                AudioChannel.maxInputLevelForAllChannels = currentLevel
+//            }
+//        }
+//    }
+//}
+//
+//var leftChannel = AudioChannel()
+//var rightChannel = AudioChannel()
+//
+//leftChannel.currentLevel = 7
+//println(leftChannel.currentLevel)
+//println(AudioChannel.maxInputLevelForAllChannels)
+//
+//rightChannel.currentLevel = 11
+//println(rightChannel.currentLevel)
+//println(AudioChannel.maxInputLevelForAllChannels)
 
-var leftChannel = AudioChannel()
-var rightChannel = AudioChannel()
+////方法：与特定类型（类和结构体）相关的函数
+//class Counter {
+//    var count = 0
+//    func incrment() {
+//        count++
+//    }
+//    
+//    func incrementBy(amount: Int) {
+//        count += amount
+//    }
+//    func reset() {
+//        count = 0
+//    }
+//}
+//
+//let counter = Counter()
+//counter.incrment()
+//counter.incrementBy(5)
+//counter.reset()
 
-leftChannel.currentLevel = 7
-println(leftChannel.currentLevel)
-println(AudioChannel.maxInputLevelForAllChannels)
+////使用self
+//struct Point {
+//    var x = 0.0, y = 0.0
+//    func isToTheRightOfX(x: Double) -> Bool {
+//        return self.x > x
+//    }
+//}
+//
+//let somePoint = Point(x: 4.0, y: 5.0)
+//
+//if somePoint.isToTheRightOfX(1.0) {
+//    println("This point is to the right of the line where x == 1.0")
+//}
 
-rightChannel.currentLevel = 11
-println(rightChannel.currentLevel)
-println(AudioChannel.maxInputLevelForAllChannels)
+////下标
+//struct TimesTable {
+//    let multiplier: Int
+//    subscript(index: Int) -> Int {
+//        return multiplier * index
+//    }
+//}
+//let threeTimesTable = TimesTable(multiplier: 3)
+//println("six times three is \(threeTimesTable[6])")
 
+////继承
+//class Vehicle {
+//    var numberOfWheel: Int
+//    var maxPassengers: Int
+//    
+//    func description() -> String {
+//        return "\(numberOfWheel) wheels; up to \(maxPassengers) passengers"
+//    }
+//    
+//    init() {
+//        numberOfWheel = 0
+//        maxPassengers = 1
+//    }
+//}
 
+////定义子类
+//class Bicycle: Vehicle {
+//    override init() {
+//        super.init()
+//        numberOfWheel = 2
+//    }
+//}
+//
+//let bicycle = Bicycle()
+////println("Bicycle: \(bicycle.description())")
+//class Car: Vehicle {
+//    var speed: Double = 0.0
+//    override init() {
+//        super.init()
+//        maxPassengers = 5
+//        numberOfWheel = 4
+//    }
+//    override func description() -> String {
+//        return super.description() + ";" + "traveling at \(speed) mph"
+//    }
+//}
+//
+//class SpeedLimitedCar: Car {
+//    override var speed: Double {
+//        get {
+//            return super.speed
+//        }
+//        set {
+//            super.speed = min(newValue, 40.0)
+//        }
+//    }
+//}
+//
+//let limitedCar = SpeedLimitedCar()
+//limitedCar.speed = 60.0
+//println("SpeedLitimedCar: \(limitedCar.description())")
 
 
