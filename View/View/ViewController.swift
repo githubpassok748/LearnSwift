@@ -9,40 +9,49 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var pg1: UIProgressView!
-    
-    let operationQueue = NSOperationQueue()
-    
-    var 完成进度 : Int = 0 {
-        didSet(oldValue) {
-            let 进度比 = Float(完成进度) / Float(100)
-            let 是否动画 = (oldValue != 0)
 
-            pg1.setProgress(进度比, animated: 是否动画)
-        }
-    }
-    
-    func simulateProgress() {
-        for _ in 0...100 {
-            operationQueue.addOperationWithBlock {
-                sleep(arc4random_uniform(10))
-                
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                    self.完成进度++
-                    return
-                }
-            }
-        }
-    }
+
+    @IBOutlet weak var toolbar1: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        simulateProgress()
+        configToolBar()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    //添加按钮
+    func configToolBar() {
+        let items = [
+            trashItem, spaceItem, shareItem
+        ]
+        
+        toolbar1.setItems(items, animated: true)
+    }
     
+    //垃圾桶图标按钮
+    var trashItem : UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "trashClick:")
+    }
+    
+    //垃圾桶事件
+    func trashClick(barItem: UIBarButtonItem) {
+        println("\(barItem)您按了删除按钮！")
+    }
+    
+    //中间空格
+    var shareItem : UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "shareClick:")
+    }
+    
+    //分享按钮
+    func shareClick(barItem: UIBarButtonItem) {
+        println("\(barItem)
+            已经共享到新浪微博了！")
+    }
+
+    var spaceItem : UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
