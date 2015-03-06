@@ -45,8 +45,7 @@ class ViewController: UIViewController {
     
     //分享按钮
     func shareClick(barItem: UIBarButtonItem) {
-        println("\(barItem)
-            已经共享到新浪微博了！")
+        println("\(barItem)已经共享到新浪微博了！")
     }
 
     var spaceItem : UIBarButtonItem {
