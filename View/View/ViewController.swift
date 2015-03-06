@@ -8,40 +8,37 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var pg1: UIProgressView!
+    
+    let operationQueue = NSOperationQueue()
+    
+    var 完成进度 : Int = 0 {
+        didSet(oldValue) {
+            let 进度比 = Float(完成进度) / Float(100)
+            let 是否动画 = (oldValue != 0)
 
-    @IBOutlet weak var pickview1: UIPickerView!
-    @IBOutlet weak var label0: UILabel!
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    
-    let citys = ["北京","上海","广州"]
-    
-    //组件数
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return citys.count
+            pg1.setProgress(进度比, animated: 是否动画)
+        }
     }
     
-    //行数
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return citys.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return citys[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component {
-        case 0: label0.text = citys[row]
-        case 1: label1.text = citys[row]
-        default:label2.text = citys[row]
-            
+    func simulateProgress() {
+        for _ in 0...100 {
+            operationQueue.addOperationWithBlock {
+                sleep(arc4random_uniform(10))
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.完成进度++
+                    return
+                }
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        simulateProgress()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
