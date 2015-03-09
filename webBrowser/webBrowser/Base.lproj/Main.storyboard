@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="webBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入一个网址" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="0Gi-ji-tA7">
+                                <rect key="frame" x="252" y="65" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2g3-1h-4h4"/>
+                                </connections>
+                            </textField>
+                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hau-Xn-7BU">
+                                <rect key="frame" x="180" y="154" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="G6v-iJ-Ig8"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JnU-OD-9l4">
+                                <rect key="frame" x="203" y="113" width="37" height="37"/>
+                                <color key="color" red="0.051826156419999998" green="1" blue="0.1458145723" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="JnU-OD-9l4" secondAttribute="centerX" id="0wS-lg-Qb8"/>
+                            <constraint firstItem="hau-Xn-7BU" firstAttribute="top" secondItem="0Gi-ji-tA7" secondAttribute="bottom" constant="30" id="4a3-aA-YHo"/>
+                            <constraint firstAttribute="centerY" secondItem="JnU-OD-9l4" secondAttribute="centerY" id="CnC-Wt-tG0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hau-Xn-7BU" secondAttribute="trailing" id="RGJ-EE-6bG"/>
+                            <constraint firstItem="0Gi-ji-tA7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VPp-cc-mbC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hau-Xn-7BU" secondAttribute="bottom" id="aVR-KA-wTr"/>
+                            <constraint firstItem="0Gi-ji-tA7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="c7z-If-qsA"/>
+                            <constraint firstItem="hau-Xn-7BU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ppH-hX-Yfj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Gi-ji-tA7" secondAttribute="trailing" id="tZf-5g-krk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loading" destination="JnU-OD-9l4" id="rVe-Zk-HFe"/>
+                        <outlet property="textField1" destination="0Gi-ji-tA7" id="h4d-Mz-z2V"/>
+                        <outlet property="web1" destination="hau-Xn-7BU" id="ROV-6n-9Yd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
